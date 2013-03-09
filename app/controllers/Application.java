@@ -10,5 +10,8 @@ public class Application extends Controller {
     public static Result index() {
         return ok(index.render("Your new application is ready."));
     }
-  
+
+    public static Result throwError() {
+        throw new RuntimeException("causing an error on purpose");
+    }
 }
