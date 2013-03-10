@@ -1,0 +1,2 @@
+GET /index          controllers.admin.Application.index()
+GET /assets/*file   controllers.admin.Application.asset(path="/public", file)

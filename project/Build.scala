@@ -15,8 +15,13 @@ object ApplicationBuild extends Build {
     "junit" % "junit-dep" % "4.11" % "test"
   )
 
-  val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
-  )
+  val adminDependencies = Seq("junit" % "junit-dep" % "4.11" % "test")
+
+  lazy val admin = play.Project(appName + "-admin", appVersion, adminDependencies, path = file("modules/admin"))
+
+
+  lazy  val main = play.Project(appName, appVersion, appDependencies).settings(
+    // Add your own project settings here
+  ).dependsOn(admin).aggregate(admin)
 
 }
