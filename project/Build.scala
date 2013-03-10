@@ -12,6 +12,7 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
+    filters,
     "junit" % "junit-dep" % "4.11" % "test"
   )
 

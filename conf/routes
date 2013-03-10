@@ -5,6 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /throw-error                controllers.Application.throwError
+GET     /form                       controllers.Application.showForm
+POST    /parse-form                 controllers.Application.parseForm
 
 ->      /admin                      admin.Routes
 
