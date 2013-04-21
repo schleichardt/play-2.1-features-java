@@ -22,7 +22,13 @@ object ApplicationBuild extends Build {
 
 
   lazy  val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here
+    playStage <<= (playStage, baseDirectory) map {(stageCommand, baseDir) =>
+      val content = """#!/usr/bin/env sh
+                      |
+                      |exec authbind --deep java $@ -cp "`dirname $0`/staged/*" play.core.server.NettyServer `dirname $0`/..""".stripMargin
+      IO.write(baseDir / "target" / "start", content)
+      stageCommand
+    }
   ).dependsOn(admin).aggregate(admin)
 
 }
